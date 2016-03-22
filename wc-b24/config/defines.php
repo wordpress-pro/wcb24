@@ -56,4 +56,11 @@ define('WCB24_SCOPE', 'crm');
  */
 define('WCB24_PROTOCOL', "https");
 
+/**
+ * Использовать REST API
+ */
 define('WCB24_USE_REST_AS_DEFAULT', true);
+/**
+ * Минимальное оставшееся время жизни токена перед отправкой запроса на обновление (сек)
+ */
+define('WCB24_TOKEN_TTL_MIN', 30);

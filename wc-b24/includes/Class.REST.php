@@ -176,6 +176,9 @@ class REST
 		}
 	}
 
+	/**
+	 * Метод для обновления токенов
+	 */
 	public function refreshAccessToken()
 	{
 		$tokens_data = $this->readTokensData();
@@ -199,10 +202,37 @@ class REST
 
 			$this->updateTokensData($query_data);
 
+			return true;
+
 		} else {
 
 			error_log('REST->getAccessCode() Произошла ошибка авторизации! '.print_r($query_data, true));
 
+			return false;
+
 		}
+	}
+
+	/**
+	 * Метод проверки валидности токена по времени жизни
+	 *
+	 * @return bool
+	 */
+	public function checkAccessTokens()
+	{
+		$tokens = $this->readTokensData();
+
+		$expires = $tokens['access_token_ts'] + $tokens['expires_in'] - time();
+
+		if($expires < WCB24_TOKEN_TTL_MIN) {
+
+			if(!$this->refreshAccessToken()) {
+				error_log('REST->checkAccessTokens() Не удалось обновить токен в течении времени жизни refresh_token.'
+					.' Необходимо получить новый токен вручную.');
+				return false;
+			}
+		}
+
+		return true;
 	}
 }
