@@ -3,7 +3,7 @@
  * Plugin Name: WooCommerce-Bitrix24
  * Plugin URI:
  * Description: Bitrix24 WooCommerce extension
- * Version: 0.3.4
+ * Version: 0.3.5
  * Author: Vadim Pshentsov <pshentsoff@yandex.ru>
  * Author URI: http://kinohouse-work.bitrix24.ru/oauth/authorize/?response_type=code&client_id=local.56f18417641fd2.08455444&redirect_uri=http://surikolq.bget.ru/index.php?wcb24=1
  * Requires at least: 4.1
@@ -53,7 +53,7 @@ function wcb24_order_processed($order_id, $posted)
 	$posted['shipping_method'] = $order->get_shipping_method();
 
 //	error_log('wcb24_order_processed: New order: '.$order_id);
-//	error_log('wcb24_order_processed: Order items = '.print_r($items, true));
+	error_log('wcb24_order_processed: Order items = '.print_r($items, true));
 //	error_log('wcb24_order_processed: Total = '.print_r($total, true));
 //	error_log('wcb24_order_processed: Checkout = '.print_r($posted, true));
 

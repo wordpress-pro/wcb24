@@ -184,7 +184,7 @@ function wcb24_rest_send_lead($lead_order, $total, array $checkout, array $items
 		)
 	);
 
-	error_log('wcb24_rest_send_lead: lead append result = '.print_r($data, true));
+//	error_log('wcb24_rest_send_lead: lead append result = '.print_r($data, true));
 
 	if(isset($data['error'])) {
 		return false;
