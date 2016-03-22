@@ -49,7 +49,7 @@ define('WCB24_REDIRECT_URI', 'http://surikolq.bget.ru'.WCB24_PATH);
 /**
  * scope приложения
  */
-define('WCB24_SCOPE', 'crm');
+define('WCB24_SCOPE', 'task,tasks_extended,mailservice,department,log,calendar,im,user,crm');
 
 /**
  * протокол, по которому работаем. должен быть https

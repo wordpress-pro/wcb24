@@ -129,7 +129,14 @@ function wcb24_rest_send_lead($lead_order, $total, array $checkout)
 
 	$rest = new \WCB24\REST();
 
-//	$rest->authenticate();
+	if(!$rest->checkAccessTokens()) {
+		error_log('wcb24_rest_send_lead: Не удалось отправить данные лида по причине отсутствия валидного токена.');
+		return false;
+	}
+
+	$data = $rest->call("user.current");
+
+	error_log('wcb24_rest_send_lead: data = '.print_r($data, true));
 
 	return $result;
 }

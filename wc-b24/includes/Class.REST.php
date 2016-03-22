@@ -78,19 +78,24 @@ class REST
 	/**
 	 * Вызов метода REST.
 	 *
-	 * @param string $domain портал
 	 * @param string $method вызываемый метод
 	 * @param array $params параметры вызова метода
 	 *
 	 * @return array
 	 */
-	public function call($domain, $method, $params)
+	public function call($method, array $params = array())
 	{
-		return $this->query('POST', WCB24_PROTOCOL."://".$domain."/rest/".$method, $params);
+		$tokens = $this->readTokensData();
+
+		if(!isset($params['auth'])) {
+			$params['auth'] = $tokens['access_token'];
+		}
+
+		return $this->query('POST', WCB24_PROTOCOL."://".$tokens['domain']."/rest/".$method, $params);
 	}
 
 	/**
-	 * Первичная авторизация
+	 * Первичная авторизация (на 23.03.2016 еще не работает)
 	 */
 	public function authenticate()
 	{
@@ -189,12 +194,12 @@ class REST
 			"client_secret" => WCB24_CLIENT_SECRET,
 			"redirect_uri" => WCB24_REDIRECT_URI,
 			"scope" => WCB24_SCOPE,
-			"refresh_token" => $tokens_data["wcb24_refresh_token"],
+			"refresh_token" => $tokens_data["refresh_token"],
 		);
 
 		$path = "/oauth/token/";
 
-		$query_data = $this->query("GET", WCB24_PROTOCOL."://".$tokens_data["wcb24_domain"].$path, $params);
+		$query_data = $this->query("GET", WCB24_PROTOCOL."://".$tokens_data["domain"].$path, $params);
 
 		if(isset($query_data["access_token"])) {
 
