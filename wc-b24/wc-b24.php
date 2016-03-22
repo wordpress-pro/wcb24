@@ -3,7 +3,7 @@
  * Plugin Name: WooCommerce-Bitrix24
  * Plugin URI:
  * Description: Bitrix24 WooCommerce extension
- * Version: 0.3.3
+ * Version: 0.3.4
  * Author: Vadim Pshentsov <pshentsoff@yandex.ru>
  * Author URI: http://kinohouse-work.bitrix24.ru/oauth/authorize/?response_type=code&client_id=local.56f18417641fd2.08455444&redirect_uri=http://surikolq.bget.ru/index.php?wcb24=1
  * Requires at least: 4.1
@@ -42,10 +42,10 @@ function wcb24_order_processed($order_id, $posted)
 	$items = array();
 	foreach ($order_items as $key => $item) {
 		$items[$key] = array(
-			'product_id' => $item['product_id'],
-			'name' => $item['name'],
-			'qty' => $item['qty'],
-			'total' => $item['line_total'],
+			'PRODUCT_ID' => $item['product_id'],
+			'QUANTITY' => $item['qty'],
+//			'name' => $item['name'],
+//			'total' => $item['line_total'],
 		);
 	}
 	$total = $order->calculate_totals();
@@ -60,7 +60,7 @@ function wcb24_order_processed($order_id, $posted)
 	$use_REST = get_option('wcb24_use_rest', WCB24_USE_REST_AS_DEFAULT);
 
 	if($use_REST) {
-		$lead_id = wcb24_rest_send_lead($order_id, $total, $posted);
+		$lead_id = wcb24_rest_send_lead($order_id, $total, $posted, $items);
 
 		// Ошибка добавления лида
 		if($lead_id === false) {

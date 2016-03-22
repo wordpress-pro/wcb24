@@ -123,7 +123,7 @@ function wcb24_send_lead($lead_order, $total, array $checkout)
 	return $result;
 }
 
-function wcb24_rest_send_lead($lead_order, $total, array $checkout)
+function wcb24_rest_send_lead($lead_order, $total, array $checkout, array $items)
 {
 	$result = false;
 
@@ -134,9 +134,66 @@ function wcb24_rest_send_lead($lead_order, $total, array $checkout)
 		return false;
 	}
 
-	$data = $rest->call("user.current");
+//	$data = $rest->call("methods");
+//	error_log('wcb24_rest_send_lead: available methods = '.print_r($data, true));
+//	if(!in_array('crm.lead.add', $data)) {
+//		error_log('wcb24_rest_send_lead: Недоступный метод - crm.lead.add');
+//		return false;
+//	}
 
-	error_log('wcb24_rest_send_lead: data = '.print_r($data, true));
+	// Формируем данные для отправки в Битрикс
+	// Дата вместо названия лида
+	date_default_timezone_set('Etc/GMT-3');
+	$current_data = date('dmyHi');
 
-	return $result;
+ 	// Забираем № roistat из кукки
+	$roistat = isset($_COOKIE['roistat_visit']) ? $_COOKIE['roistat_visit'] : 0;
+
+	$data = $rest->call('crm.lead.add',
+		array(
+			'fields' => array(
+				'TITLE'             => $current_data,
+				'NAME'              => $checkout['billing_first_name'],
+				'LAST_NAME'			=> $checkout['billing_last_name'],
+				'PHONE_MOBILE'      => $checkout['billing_phone'],
+				'UF_CRM_1458036309' => $roistat,
+				'UF_CRM_1458036199' => wp_title(), // Посадочная
+				'SOURCE_ID'         => 'WEB', // источник
+//			'UF_CRM_1458036597' => $lead_form, // Лид-форма
+				'UF_CRM_1458036686' => $lead_order, // Заказ
+				'OPPORTUNITY' 		=> $total,
+
+				// Новые поля
+				// @todo Скорректировать после добавления к лиду в Б24
+				'UF_CRM_PAYMENT_METHOD' => $checkout['payment_method'],
+				'UF_CRM_SHIPPING_METHOD' => $checkout['shipping_method'],
+				'UF_CRM_BILLING_FIRST_NAME' => $checkout['billing_first_name'],
+				'UF_CRM_BILLING_LAST_NAME' => $checkout['billing_last_name'],
+				'UF_CRM_BILLING_COMPANY' => $checkout['billing_company'],
+				'UF_CRM_BILLING_EMAIL' => $checkout['billing_email'],
+				'UF_CRM_BILLING_PHONE' => $checkout['billing_phone'],
+				'UF_CRM_BILLING_COUNTRY' => $checkout['billing_country'],
+				'UF_CRM_BILLING_ADDRESS_1' => $checkout['billing_address_1'],
+				'UF_CRM_BILLING_ADDRESS_2' => $checkout['billing_address_2'],
+				'UF_CRM_BILLING_CITY' => $checkout['billing_city'],
+				'UF_CRM_BILLING_STATE' => $checkout['billing_state'],
+				'UF_CRM_BILLING_POSTCODE' => $checkout['billing_postcode'],
+				'UF_CRM_ORDER_COMMENTS' => $checkout['order_comments'],
+				'UF_CRM_TOTAL' => $total,
+			),
+		)
+	);
+
+	error_log('wcb24_rest_send_lead: lead append result = '.print_r($data, true));
+
+	if(isset($data['error'])) {
+		return false;
+	}
+
+	$items_data = $rest->call('crm.lead.productrows.set', array(
+		'id' => $data['result'],
+		'rows' => $items,
+	));
+
+	return true;
 }
