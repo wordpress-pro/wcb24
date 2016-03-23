@@ -15,10 +15,17 @@ Bitrix24 WooCommerce extension
 
 ### Useful links:
 
-#### Version 0.3.1
-#### Last work version 0.0.0
+#### Version 0.3.6
+#### Last work version 0.3.6
 #### Last stable version 0.0.0
 
 ### Versions history
 
-#### version 0.0.0
+#### version 0.3.6
+
+-  класс для работы с REST API Bitrix24
+-  OAuth2 авторизация
+-  Получение первичного токена и посторных (обновление)
+-  Отправка данных лида обычным GET-запросом
+-  Отправка данных лида через REST API Bitrix24
+-  Отправка товаров лида
