@@ -3,7 +3,7 @@
  * Plugin Name: WooCommerce-Bitrix24
  * Plugin URI:
  * Description: Bitrix24 WooCommerce extension
- * Version: 0.3.5
+ * Version: 0.3.6
  * Author: Vadim Pshentsov <pshentsoff@yandex.ru>
  * Author URI: http://kinohouse-work.bitrix24.ru/oauth/authorize/?response_type=code&client_id=local.56f18417641fd2.08455444&redirect_uri=http://surikolq.bget.ru/index.php?wcb24=1
  * Requires at least: 4.1
@@ -41,11 +41,11 @@ function wcb24_order_processed($order_id, $posted)
 
 	$items = array();
 	foreach ($order_items as $key => $item) {
-		$items[$key] = array(
-			'PRODUCT_ID' => $item['product_id'],
-			'QUANTITY' => $item['qty'],
-//			'name' => $item['name'],
-//			'total' => $item['line_total'],
+		$items[] = array(
+			"PRODUCT_ID" => $item['product_id'],
+			"QUANTITY" => $item['qty'],
+			'PRODUCT_NAME' => $item['name'],
+			"PRICE" => $item['line_total'],
 		);
 	}
 	$total = $order->calculate_totals();

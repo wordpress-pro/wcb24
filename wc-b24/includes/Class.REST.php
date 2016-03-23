@@ -57,6 +57,9 @@ class REST
 		{
 			$curlOptions[CURLOPT_POST] = true;
 			$curlOptions[CURLOPT_POSTFIELDS] = http_build_query($data);
+//			$curlOptions[CURLOPT_POSTFIELDS] = json_encode($data);
+
+			error_log('REST->query() data = '.print_r($curlOptions[CURLOPT_POSTFIELDS], true));
 		}
 		elseif(!empty($data))
 		{
