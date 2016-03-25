@@ -15,13 +15,13 @@ Bitrix24 WooCommerce extension
 
 ### Useful links:
 
-#### Version 0.3.7
-#### Last work version 0.3.7
-#### Last stable version 0.3.7
+#### Version 0.3.8
+#### Last work version 0.3.8
+#### Last stable version 0.3.8
 
 ### Versions history
 
-#### version 0.3.7
+#### version 0.3.8
 
 -  класс для работы с REST API Bitrix24
 -  OAuth2 авторизация

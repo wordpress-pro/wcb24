@@ -59,21 +59,21 @@ class REST
 			$curlOptions[CURLOPT_POSTFIELDS] = http_build_query($data);
 //			$curlOptions[CURLOPT_POSTFIELDS] = json_encode($data);
 
-			error_log('REST->query() data = '.print_r($curlOptions[CURLOPT_POSTFIELDS], true));
+//			error_log('REST->query() data = '.print_r($curlOptions[CURLOPT_POSTFIELDS], true));
 		}
 		elseif(!empty($data))
 		{
 			$url .= strpos($url, "?") > 0 ? "&" : "?";
 			$url .= http_build_query($data);
 
-			error_log("REST->query() url=[$url]");
+//			error_log("REST->query() url=[$url]");
 		}
 
 		$curl = curl_init($url);
 		curl_setopt_array($curl, $curlOptions);
 		$result = curl_exec($curl);
 
-		error_log("REST->query() result=[$result]");
+//		error_log("REST->query() result=[$result]");
 
 		return json_decode($result, 1);
 	}
@@ -173,13 +173,13 @@ class REST
 
 		if(isset($query_data["access_token"])) {
 
-			error_log('REST->getAccessCode() access token gained : '.print_r($query_data, true));
+//			error_log('REST->getAccessCode() access token gained : '.print_r($query_data, true));
 
 			$this->updateTokensData($query_data);
 
 		} else {
 
-			error_log('REST->getAccessCode() Произошла ошибка авторизации! '.print_r($query_data, true));
+//			error_log('REST->getAccessCode() Произошла ошибка авторизации! '.print_r($query_data, true));
 
 		}
 	}
@@ -206,7 +206,7 @@ class REST
 
 		if(isset($query_data["access_token"])) {
 
-			error_log('REST->getAccessCode() access token refreshed : '.print_r($query_data, true));
+//			error_log('REST->getAccessCode() access token refreshed : '.print_r($query_data, true));
 
 			$this->updateTokensData($query_data);
 
@@ -214,7 +214,7 @@ class REST
 
 		} else {
 
-			error_log('REST->getAccessCode() Произошла ошибка авторизации! '.print_r($query_data, true));
+//			error_log('REST->getAccessCode() Произошла ошибка авторизации! '.print_r($query_data, true));
 
 			return false;
 
@@ -235,8 +235,8 @@ class REST
 		if($expires < WCB24_TOKEN_TTL_MIN) {
 
 			if(!$this->refreshAccessToken()) {
-				error_log('REST->checkAccessTokens() Не удалось обновить токен в течении времени жизни refresh_token.'
-					.' Необходимо получить новый токен вручную.');
+//				error_log('REST->checkAccessTokens() Не удалось обновить токен в течении времени жизни refresh_token.'
+//					.' Необходимо получить новый токен вручную.');
 				return false;
 			}
 		}

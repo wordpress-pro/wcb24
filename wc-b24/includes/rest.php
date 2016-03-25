@@ -171,7 +171,7 @@ function wcb24_rest_send_lead($lead_order, $total, array $checkout, array $items
 				),
 				'PHONE_MOBILE'      => $checkout['billing_phone'],
 				'UF_CRM_1458036309' => $roistat,
-				'UF_CRM_1458036199' => wp_title(), // Посадочная
+				'UF_CRM_1458036199' => wp_title(' ', false), // Посадочная
 				'SOURCE_ID'         => 'WEB', // источник
 //			'UF_CRM_1458036597' => $lead_form, // Лид-форма
 				'UF_CRM_1458036686' => $lead_order, // Заказ
