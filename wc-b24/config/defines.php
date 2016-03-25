@@ -64,3 +64,7 @@ define('WCB24_USE_REST_AS_DEFAULT', true);
  * Минимальное оставшееся время жизни токена перед отправкой запроса на обновление (сек)
  */
 define('WCB24_TOKEN_TTL_MIN', 30);
+/**
+ * Передача SKU (артикула) в качестве PRODUCT_ID
+ */
+define('WCB24_SKU_AS_PRODUCT_ID', true);

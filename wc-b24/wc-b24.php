@@ -3,7 +3,7 @@
  * Plugin Name: WooCommerce-Bitrix24
  * Plugin URI:
  * Description: Bitrix24 WooCommerce extension
- * Version: 0.3.6
+ * Version: 0.3.7
  * Author: Vadim Pshentsov <pshentsoff@yandex.ru>
  * Author URI: http://kinohouse-work.bitrix24.ru/oauth/authorize/?response_type=code&client_id=local.56f18417641fd2.08455444&redirect_uri=http://surikolq.bget.ru/index.php?wcb24=1
  * Requires at least: 4.1
@@ -33,6 +33,8 @@ function wcb24_order_processed($order_id, $posted)
 {
 	global $wp;
 
+	$sku_as_product_id = WCB24_SKU_AS_PRODUCT_ID;
+
 	$order = new WC_Order($order_id);
 
 	$order_items = $order->get_items();
@@ -41,12 +43,18 @@ function wcb24_order_processed($order_id, $posted)
 
 	$items = array();
 	foreach ($order_items as $key => $item) {
+
+		$product = new \WC_Product($item['product_id']);
+
 		$items[] = array(
-			"PRODUCT_ID" => $item['product_id'],
+			"PRODUCT_ID" => ($sku_as_product_id ? $product->get_sku() : $item['product_id']),
 			"QUANTITY" => $item['qty'],
 			'PRODUCT_NAME' => $item['name'],
-			"PRICE" => $item['line_total'],
+			"PRICE" => $product->get_price(),
 		);
+
+		unset($product);
+
 	}
 	$total = $order->calculate_totals();
 	$posted['payment_method'] = $order->payment_method_title;
