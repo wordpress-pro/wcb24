@@ -21,35 +21,33 @@
  */
 
 // CRM server conection data
-defined('WCB24_CRM_HOST') or define('WCB24_CRM_HOST', 'kinohouse-work.bitrix24.ru'); // your CRM domain name
-// http://kinohouse-work.bitrix24.ru/oauth/authorize/?response_type=code&client_id=local.56f18417641fd2.08455444&redirect_uri=http://surikolq.bget.ru/index.php?wcb24=1
 defined('WCB24_CRM_PORT') or define('WCB24_CRM_PORT', '443'); // CRM server port
 defined('WCB24_CRM_LEAD_PATH') or define('WCB24_CRM_LEAD_PATH', '/crm/configs/import/lead.php'); // CRM server REST service path
 
 // CRM server authorization data
-defined('WCB24_CRM_LOGIN') or define('WCB24_CRM_LOGIN', 'vladimr.surkov@ya.ru'); // login of a CRM user able to manage leads
-defined('WCB24_CRM_PASSWORD') or define('WCB24_CRM_PASSWORD', 'wK1R9t'); // password of a CRM user
+defined('WCB24_CRM_LOGIN') or define('WCB24_CRM_LOGIN', 'YOUR BITRIX24 LOGIN'); // login of a CRM user able to manage leads
+defined('WCB24_CRM_PASSWORD') or define('WCB24_CRM_PASSWORD', 'YOUR BITRIX24 LOGIN'); // password of a CRM user
 
 /**
  * client_id приложения
  */
-define('WCB24_CLIENT_ID', 'local.56f18417641fd2.08455444');
+define('WCB24_CLIENT_ID', 'APPLICATION CLIENT ID');
 /**
  * client_secret приложения
  */
-define('WCB24_CLIENT_SECRET', '87df9bf518a341a9282122919761b8f6');
+define('WCB24_CLIENT_SECRET', 'APPLICATION CLIENT SECRET');
 /**
  * относительный путь приложения на сервере
  */
-define('WCB24_PATH', '/index.php?wcb24=1');
+define('WCB24_PATH', '/?wcb24=1');
 /**
  * полный адрес к приложения
  */
-define('WCB24_REDIRECT_URI', 'http://surikolq.bget.ru'.WCB24_PATH);
+//define('WCB24_REDIRECT_URI', 'http://surikolq.bget.ru'.WCB24_PATH);
 /**
  * scope приложения
  */
-define('WCB24_SCOPE', 'task,tasks_extended,mailservice,department,log,calendar,im,user,crm');
+define('WCB24_SCOPE', 'crm');
 
 /**
  * протокол, по которому работаем. должен быть https

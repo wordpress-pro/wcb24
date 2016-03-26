@@ -161,9 +161,9 @@ class REST
 	{
 		$params = array(
 			"grant_type" => "authorization_code",
-			"client_id" => WCB24_CLIENT_ID,
-			"client_secret" => WCB24_CLIENT_SECRET,
-			"redirect_uri" => WCB24_REDIRECT_URI,
+			"client_id" => get_option('wcb24_client_id', false),
+			"client_secret" => get_option('wcb24_client_secret', false),
+			"redirect_uri" => get_option('siteurl').WCB24_PATH,
 			"scope" => WCB24_SCOPE,
 			"code" => $code,
 		);
@@ -193,9 +193,9 @@ class REST
 
 		$params = array(
 			"grant_type" => "refresh_token",
-			"client_id" => WCB24_CLIENT_ID,
-			"client_secret" => WCB24_CLIENT_SECRET,
-			"redirect_uri" => WCB24_REDIRECT_URI,
+			"client_id" => get_option('wcb24_client_id', false),
+			"client_secret" => get_option('wcb24_client_secret', false),
+			"redirect_uri" => get_option('siteurl').WCB24_PATH,
 			"scope" => WCB24_SCOPE,
 			"refresh_token" => $tokens_data["refresh_token"],
 		);

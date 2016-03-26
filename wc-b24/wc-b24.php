@@ -3,9 +3,9 @@
  * Plugin Name: WooCommerce-Bitrix24
  * Plugin URI:
  * Description: Bitrix24 WooCommerce extension
- * Version: 0.4.1
+ * Version: 0.4.2
  * Author: Vadim Pshentsov <pshentsoff@yandex.ru>
- * Author URI: http://kinohouse-work.bitrix24.ru/oauth/authorize/?response_type=code&client_id=local.56f18417641fd2.08455444&redirect_uri=http://surikolq.bget.ru/index.php?wcb24=1
+ * Author URI: http://pshentsoff.ru
  * Requires at least: 4.1
  * Tested up to: 4.4
  *
@@ -24,7 +24,6 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 require_once __DIR__ . '/config/defines.php';
-require_once __DIR__ . '/config/config.php';
 require_once __DIR__ . '/includes/rest.php';
 require_once __DIR__ . '/includes/Class.REST.php';
 require_once __DIR__ . '/includes/hooks.php';
