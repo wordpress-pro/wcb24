@@ -78,12 +78,30 @@ function wcb24_order_processed($order_id, $posted)
 
 }
 
-add_filter('wpcf7_mail_components', 'wcb24_wpcf7_mail_components', 10, 2);
-function wcb24_wpcf7_mail_components($mail_params, $form = null)
+add_filter('wpcf7_posted_data', 'wcb24_wpcf7_posted_data', 10, 1);
+function wcb24_wpcf7_posted_data($posted_data)
 {
-	error_log('wcb24_wpcf7_mail_components: $mail_params = '.print_r($mail_params, true));
+	error_log('wcb24_wpcf7_posted_data: $posted_data = '.print_r($posted_data, true));
 
-	wcb24_rest_send_cf7_to_lead($mail_params['sender'], $mail_params['body']);
+	$lead_params = array();
 
-	return $mail_params;
+	foreach ($posted_data as $field => $value) {
+		if(preg_match("/(-)?tel(-)?/i", $field)) {
+			$lead_params['phone'] = $value;
+		} elseif(preg_match("/(-)?email(-)?/i", $field)) {
+			$lead_params['email'] = $value;
+		} elseif(preg_match("/(-)?name(-)?/i", $field)) {
+			$lead_params['name'] = $value;
+		} elseif(preg_match("/(-)?text(-)?/i", $field)) {
+			$lead_params['name'] = $value;
+		} elseif(preg_match("/(-)?message(-)?/i", $field)) {
+			$lead_params['message'] = $value;
+		}
+	}
+
+	error_log('wcb24_wpcf7_posted_data: $posted_data = '.print_r($posted_data, true));
+
+	wcb24_rest_send_cf7_to_lead($lead_params);
+
+	return $posted_data;
 }

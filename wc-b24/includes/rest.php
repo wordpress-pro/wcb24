@@ -225,7 +225,7 @@ function wcb24_rest_send_lead($lead_order, $total, array $checkout, array $items
 	return true;
 }
 
-function wcb24_rest_send_cf7_to_lead($sender, $message)
+function wcb24_rest_send_cf7_to_lead($params)
 {
 	$rest = new \WCB24\REST();
 
@@ -246,20 +246,23 @@ function wcb24_rest_send_cf7_to_lead($sender, $message)
 		array(
 			'fields' => array(
 				'TITLE'             => $current_data,
-				'NAME'              => $sender,
+				'NAME'              => (isset($params['name']) ? $params['name'] : ''),
 //				'LAST_NAME'			=> $checkout['billing_last_name'],
-//				'PHONE' => array(
-//					array(
-//						"VALUE" => $checkout['billing_phone'],
-//						"VALUE_TYPE" => "WORK",
-//					),
-//				),
-//				'EMAIL' => array(
-//					array(
-//						"VALUE" => $checkout['billing_email'],
-//						"VALUE_TYPE" => "WORK",
-//					),
-//				),
+
+				'PHONE' => array(
+					array(
+						"VALUE" => (isset($params['phone']) ? $params['phone'] : ''),
+						"VALUE_TYPE" => "WORK",
+					),
+				),
+
+				'EMAIL' => array(
+					array(
+						"VALUE" => (isset($params['email']) ? $params['email'] : ''),
+						"VALUE_TYPE" => "WORK",
+					),
+				),
+
 //				'PHONE_MOBILE'      => $checkout['billing_phone'],
 				'UF_CRM_1458036309' => $roistat,
 				'UF_CRM_1458036199' => wp_title(' ', false), // Посадочная
@@ -277,7 +280,7 @@ function wcb24_rest_send_cf7_to_lead($sender, $message)
 //					.' '.$checkout['billing_address_1'],
 //				'ADDRESS_2' 	=> $checkout['billing_address_2'],
 
-				'COMMENTS' => $message,
+				'COMMENTS' => (isset($params['message']) ? $params['message'] : ''),
 
 				// Новые поля
 				// @todo Скорректировать после добавления к лиду в Б24
