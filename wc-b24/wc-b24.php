@@ -28,6 +28,7 @@ require_once __DIR__ . '/config/config.php';
 require_once __DIR__ . '/includes/rest.php';
 require_once __DIR__ . '/includes/Class.REST.php';
 require_once __DIR__ . '/includes/hooks.php';
+require_once __DIR__ . '/includes/options.php';
 
 if(isset($_REQUEST['wcb24'])) {
 
