@@ -3,7 +3,7 @@
  * Plugin Name: WooCommerce-Bitrix24
  * Plugin URI:
  * Description: Bitrix24 WooCommerce extension
- * Version: 0.3.7
+ * Version: 0.4.0
  * Author: Vadim Pshentsov <pshentsoff@yandex.ru>
  * Author URI: http://kinohouse-work.bitrix24.ru/oauth/authorize/?response_type=code&client_id=local.56f18417641fd2.08455444&redirect_uri=http://surikolq.bget.ru/index.php?wcb24=1
  * Requires at least: 4.1

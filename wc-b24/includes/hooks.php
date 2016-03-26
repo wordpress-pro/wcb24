@@ -77,3 +77,13 @@ function wcb24_order_processed($order_id, $posted)
 	}
 
 }
+
+add_filter('wpcf7_mail_components', 'wcb24_wpcf7_mail_components', 10, 2);
+function wcb24_wpcf7_mail_components($mail_params, $form = null)
+{
+	error_log('wcb24_wpcf7_mail_components: $mail_params = '.print_r($mail_params, true));
+
+	wcb24_rest_send_cf7_to_lead($mail_params['sender'], $mail_params['body']);
+
+	return $mail_params;
+}

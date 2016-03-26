@@ -15,11 +15,15 @@ Bitrix24 WooCommerce extension
 
 ### Useful links:
 
-#### Version 0.3.8
+#### Version 0.4.0
 #### Last work version 0.3.8
 #### Last stable version 0.3.8
 
 ### Versions history
+
+#### version 0.4.0
+
+-  добавлена отправка в лиды Битрикс24 данных форм Contact Form 7 
 
 #### version 0.3.8
 
