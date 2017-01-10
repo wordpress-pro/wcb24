@@ -1,0 +1,21 @@
+#!/bin/bash
+####################################################################################################################
+#
+# The script for incrementing build version and making new release using git-flow
+#
+
+# Version bump
+VERSION=`cut -d '.' -f 1,2 $PWD/VERSION`
+BUILD=`cut -d '.' -f 3 $PWD/VERSION`
+((BUILD=BUILD+1))
+BUILD_VERSION=$VERSION.$BUILD
+
+export GIT_MERGE_AUTOEDIT=no
+
+git checkout -- .
+git flow release start $BUILD_VERSION
+echo $BUILD_VERSION > $PWD/VERSION
+git commit -am "`echo 'Release version '$BUILD_VERSION`"
+git flow release finish -n $BUILD_VERSION
+
+exit 0
