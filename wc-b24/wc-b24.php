@@ -9,7 +9,7 @@
  * Requires at least: 4.1
  * Tested up to: 4.4
  *
- * Text Domain: wc_b25
+ * Text Domain: wc_b24
  * Domain Path: /languages/
  *
  * @package WooCommerce
