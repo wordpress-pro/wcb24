@@ -11,7 +11,8 @@ BUILD=`cut -d '.' -f 3 $PWD/VERSION`
 ((BUILD=BUILD+1))
 BUILD_VERSION=$VERSION.$BUILD
 
-sed -r 's/^#### Version .*/#### Version '$BUILD_VERSION'/g' README.md > README.md
+sed -r 's/^#### Version .*/#### Version '$BUILD_VERSION'/g' $PWD/README.md > $PWD/README.md
+sed -r 's/^ \* Version: .*/ \* Version: '$BUILD_VERSION'/g' $PWD/wc-b24/wc-b24.php > $PWD/wc-b24/wc-b24.php
 
 export GIT_MERGE_AUTOEDIT=no
 
