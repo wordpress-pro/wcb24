@@ -5,10 +5,13 @@
 #
 
 # Version bump
+CUR_VERSION=`cat $PWD/VERSION`
 VERSION=`cut -d '.' -f 1,2 $PWD/VERSION`
 BUILD=`cut -d '.' -f 3 $PWD/VERSION`
 ((BUILD=BUILD+1))
 BUILD_VERSION=$VERSION.$BUILD
+
+sed -r 's/^#### Version .*/#### Version '$BUILD_VERSION'/g' README.md > README.md
 
 export GIT_MERGE_AUTOEDIT=no
 

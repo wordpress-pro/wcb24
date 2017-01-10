@@ -16,9 +16,9 @@ Bitrix24 WooCommerce extension
 ### Useful links:
 
 #### Version 0.4.2
-#### Last work version 0.0.0
-#### Last stable version 0.0.0
+#### Last work version 0.4.2
+#### Last stable version 0.4.2
 
 ### Versions history
 
-#### version 0.0.0
+#### version 0.4.2
