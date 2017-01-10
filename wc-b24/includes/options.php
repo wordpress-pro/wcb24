@@ -99,6 +99,16 @@ function wcb24_options_page()
 					<td><input type="text" name="wcb24_refresh_token" value="<?php echo get_option('wcb24_refresh_token', false); ?>" disabled readonly placeholder="REFRESH TOKEN" /></td>
 				</tr>
 				<tr valign="top">
+					<th scope="row">Use Bitrix24 REST</th>
+					<td>
+						<input type="checkbox"
+						       name="wcb24_use_rest_as_default" <?php echo get_option( 'wcb24_use_rest_as_default', true ) ? 'checked' : ''; ?> />
+						<p class="description">
+							Использовать Bitrix24 REST
+						</p>
+					</td>
+				</tr>
+				<tr valign="top">
 					<th scope="row">Use SKU as Product ID</th>
 					<td>
 						<input type="checkbox"
