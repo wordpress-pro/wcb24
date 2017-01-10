@@ -120,7 +120,7 @@ function wcb24_options_page()
 				</tr>
 			</table>
 			<input type="hidden" name="action" value="update" />
-			<input type="hidden" name="page_options" value="wcb24_crm_host,wcb24_client_id,wcb24_client_secret" />
+			<input type="hidden" name="page_options" value="wcb24_crm_host,wcb24_client_id,wcb24_client_secret,wcb24_use_rest_as_default,wcb24_use_sku_as_product_id" />
 			<p class="submit">
 				<input type="submit" class="button-primary" value="<?php _e('Save Changes') ?>" />
 			</p>
