@@ -94,6 +94,16 @@ function wcb24_options_page()
 					<th scope="row">Refresh Token</th>
 					<td><input type="text" name="wcb24_refresh_token" value="<?php echo get_option('wcb24_refresh_token', false); ?>" disabled readonly placeholder="REFRESH TOKEN" /></td>
 				</tr>
+				<tr valign="top">
+					<th scope="row">Use SKU as Product ID</th>
+					<td>
+						<input type="checkbox"
+						       name="wcb24_use_sku_as_product_id" <?php echo get_option( 'wcb24_use_sku_as_product_id', true ) ? 'checked' : ''; ?> />
+						<p class="description">
+							Использовать SKU (артикул) товара в качестве Product ID
+						</p>
+					</td>
+				</tr>
 			</table>
 			<input type="hidden" name="action" value="update" />
 			<input type="hidden" name="page_options" value="wcb24_crm_host,wcb24_client_id,wcb24_client_secret" />

@@ -25,7 +25,7 @@ function wcb24_order_processed($order_id, $posted)
 {
 	global $wp;
 
-	$sku_as_product_id = WCB24_SKU_AS_PRODUCT_ID;
+	$sku_as_product_id = get_option('wcb24_use_sku_as_product_id', WCB24_SKU_AS_PRODUCT_ID);
 
 	$order = new WC_Order($order_id);
 
