@@ -18,6 +18,7 @@ function wcb24_send_lead($lead_order, $total, array $checkout)
 
 // Формируем данные для отправки в Битрикс
 // Дата вместо названия лида
+	// @todo get from WP settings
 	date_default_timezone_set('Etc/GMT-3');
 	$current_data = date('dmyHi');
 

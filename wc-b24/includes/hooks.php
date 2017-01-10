@@ -20,12 +20,16 @@
  *
  */
 
+if ( ! defined( 'ABSPATH' ) ) {
+	exit; // Exit if accessed directly
+}
+
 add_filter('woocommerce_checkout_order_processed', 'wcb24_order_processed', 10, 2);
 function wcb24_order_processed($order_id, $posted)
 {
 	global $wp;
 
-	$sku_as_product_id = WCB24_SKU_AS_PRODUCT_ID;
+	$sku_as_product_id = get_option('wcb24_use_sku_as_product_id', WCB24_SKU_AS_PRODUCT_ID);
 
 	$order = new WC_Order($order_id);
 
@@ -60,7 +64,7 @@ function wcb24_order_processed($order_id, $posted)
 //	error_log('wcb24_order_processed: Total = '.print_r($total, true));
 //	error_log('wcb24_order_processed: Checkout = '.print_r($posted, true));
 
-	$use_REST = get_option('wcb24_use_rest', WCB24_USE_REST_AS_DEFAULT);
+	$use_REST = get_option('wcb24_use_rest_as_default', WCB24_USE_REST_AS_DEFAULT);
 
 	if($use_REST) {
 		$lead_id = wcb24_rest_send_lead($order_id, $total, $posted, $items);

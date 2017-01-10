@@ -20,6 +20,10 @@
  *
  */
 
+if ( ! defined( 'ABSPATH' ) ) {
+	exit; // Exit if accessed directly
+}
+
 // CRM server conection data
 defined('WCB24_CRM_PORT') or define('WCB24_CRM_PORT', '443'); // CRM server port
 defined('WCB24_CRM_LEAD_PATH') or define('WCB24_CRM_LEAD_PATH', '/crm/configs/import/lead.php'); // CRM server REST service path
@@ -41,10 +45,6 @@ define('WCB24_CLIENT_SECRET', 'APPLICATION CLIENT SECRET');
  */
 define('WCB24_PATH', '/?wcb24=1');
 /**
- * полный адрес к приложения
- */
-//define('WCB24_REDIRECT_URI', 'http://surikolq.bget.ru'.WCB24_PATH);
-/**
  * scope приложения
  */
 define('WCB24_SCOPE', 'crm');
@@ -52,7 +52,7 @@ define('WCB24_SCOPE', 'crm');
 /**
  * протокол, по которому работаем. должен быть https
  */
-define('WCB24_PROTOCOL', "https");
+define('WCB24_PROTOCOL', 'https');
 
 /**
  * Использовать REST API

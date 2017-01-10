@@ -20,6 +20,10 @@
  *
  */
 
+if ( ! defined( 'ABSPATH' ) ) {
+	exit; // Exit if accessed directly
+}
+
 add_action('admin_menu', 'wcb24_options_menu');
 function wcb24_options_menu()
 {
@@ -94,9 +98,29 @@ function wcb24_options_page()
 					<th scope="row">Refresh Token</th>
 					<td><input type="text" name="wcb24_refresh_token" value="<?php echo get_option('wcb24_refresh_token', false); ?>" disabled readonly placeholder="REFRESH TOKEN" /></td>
 				</tr>
+				<tr valign="top">
+					<th scope="row">Use Bitrix24 REST</th>
+					<td>
+						<input type="checkbox"
+						       name="wcb24_use_rest_as_default" <?php echo get_option( 'wcb24_use_rest_as_default', true ) ? 'checked' : ''; ?> />
+						<p class="description">
+							Использовать Bitrix24 REST
+						</p>
+					</td>
+				</tr>
+				<tr valign="top">
+					<th scope="row">Use SKU as Product ID</th>
+					<td>
+						<input type="checkbox"
+						       name="wcb24_use_sku_as_product_id" <?php echo get_option( 'wcb24_use_sku_as_product_id', true ) ? 'checked' : ''; ?> />
+						<p class="description">
+							Использовать SKU (артикул) товара в качестве Product ID
+						</p>
+					</td>
+				</tr>
 			</table>
 			<input type="hidden" name="action" value="update" />
-			<input type="hidden" name="page_options" value="wcb24_crm_host,wcb24_client_id,wcb24_client_secret" />
+			<input type="hidden" name="page_options" value="wcb24_crm_host,wcb24_client_id,wcb24_client_secret,wcb24_use_rest_as_default,wcb24_use_sku_as_product_id" />
 			<p class="submit">
 				<input type="submit" class="button-primary" value="<?php _e('Save Changes') ?>" />
 			</p>
