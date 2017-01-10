@@ -20,6 +20,10 @@
  *
  */
 
+if ( ! defined( 'ABSPATH' ) ) {
+	exit; // Exit if accessed directly
+}
+
 add_action('admin_menu', 'wcb24_options_menu');
 function wcb24_options_menu()
 {

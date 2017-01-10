@@ -20,6 +20,10 @@
  *
  */
 
+if ( ! defined( 'ABSPATH' ) ) {
+	exit; // Exit if accessed directly
+}
+
 add_filter('woocommerce_checkout_order_processed', 'wcb24_order_processed', 10, 2);
 function wcb24_order_processed($order_id, $posted)
 {

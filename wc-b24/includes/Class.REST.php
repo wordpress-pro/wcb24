@@ -21,6 +21,10 @@ namespace WCB24;
  *
  */
 
+if ( ! defined( 'ABSPATH' ) ) {
+	exit; // Exit if accessed directly
+}
+
 class REST
 {
 

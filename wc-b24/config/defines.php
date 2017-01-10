@@ -20,6 +20,10 @@
  *
  */
 
+if ( ! defined( 'ABSPATH' ) ) {
+	exit; // Exit if accessed directly
+}
+
 // CRM server conection data
 defined('WCB24_CRM_PORT') or define('WCB24_CRM_PORT', '443'); // CRM server port
 defined('WCB24_CRM_LEAD_PATH') or define('WCB24_CRM_LEAD_PATH', '/crm/configs/import/lead.php'); // CRM server REST service path
